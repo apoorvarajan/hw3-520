@@ -52,11 +52,9 @@ public class ExpenseTrackerController {
     return true;
   }
 
-  public boolean undoTransaction() {
-    List<Transaction> transactions = model.getTransactions();
-    Transaction t = transactions.get(transactions.size()-1);
+  public boolean undoTransaction(int[] transactions) {
+    Transaction t = model.getTransactions().get(transactions[0]);
     model.removeTransaction(t);
-    //view.getTableModel().addRow(new Object[]{t.getAmount(), t.getCategory(), t.getTimestamp()});
     refresh();
     return true;
   }

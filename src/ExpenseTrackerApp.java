@@ -71,10 +71,17 @@ public class ExpenseTrackerApp {
     boolean showUndo = controller.showUndo();
     if(!showUndo){
       JOptionPane.showMessageDialog(view,"No transactions to undo");
-    view.toFront();
+      view.toFront();
     }
     else{
-      controller.undoTransaction();
+      int[] selectedTransaction = view.getTransactionsTable().getSelectedRows();
+      if(selectedTransaction.length<1){
+        controller.undoTransaction(selectedTransaction);
+      }
+      else{
+        JOptionPane.showMessageDialog(view,"No transactions selected to undo");
+        view.toFront();
+      }
     }
   });
   }
